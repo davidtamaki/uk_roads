@@ -3,6 +3,7 @@ view: latlong {
 
   dimension:  east_north {
     type: number
+    hidden: yes
     sql: ${TABLE}.east ||  ${TABLE}.north ;;
   }
 

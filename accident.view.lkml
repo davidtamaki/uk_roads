@@ -75,29 +75,29 @@ view: accident {
   }
 
   dimension: location_easting_osgr {
-    group_label: "east_north_osgr"
+    hidden:  yes
     type: number
     sql: ${TABLE}.location_easting_osgr ;;
   }
 
   dimension: location_northing_osgr {
-    group_label: "east_north_osgr"
+    hidden: yes
     type: number
     sql: ${TABLE}.location_northing_osgr ;;
   }
 
   dimension:  east_north {
-    group_label: "east_north_osgr"
+    hidden: yes
     type: number
     sql: ${location_easting_osgr} ||  ${location_northing_osgr} ;;
   }
 
 
-  dimension: location {
-    type: location
-    sql_latitude: ${TABLE}.latitude ;;
-    sql_longitude: ${TABLE}.longitude ;;
-  }
+#   dimension: location {
+#     type: location
+#     sql_latitude: ${TABLE}.latitude ;;
+#     sql_longitude: ${TABLE}.longitude ;;
+#   }
 
   dimension: lsoa_of_accident_location {
     type: string

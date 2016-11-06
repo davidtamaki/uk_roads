@@ -119,7 +119,28 @@ view: casualty {
     }
   }
 
+  measure: count_pedestrian_deaths {
+    type: count
+    filters: {
+      field: casualty_class
+      value: "Pedestrian"
+    }
+    filters: {
+      field: casualty_severity
+      value: "Fatal"
+    }
+  }
 
-
+  measure: count_cycle_deaths {
+    type: count
+    filters: {
+      field: vehicle.vehicle_type
+      value: "Pedal cycle"
+    }
+    filters: {
+      field: casualty_severity
+      value: "Fatal"
+    }
+  }
 
 }

@@ -1,10 +1,9 @@
 connection: "uk-accidents"
 
-# include all the views
 include: "*.view"
-
-# include all the dashboards
 include: "*.dashboard"
+
+persist_for: "10000 hours"
 
 explore: vehicle {
   label: "UK Accidents"
