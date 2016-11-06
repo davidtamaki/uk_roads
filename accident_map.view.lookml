@@ -1,4 +1,4 @@
-- view: accident_map
+- view: accident
   sql_table_name: public.accident_map
   fields:
 
@@ -81,14 +81,11 @@
     type: number
     sql: ${TABLE}.location_northing_osgr
     
-  - dimension: latitude
-    type: number
-    sql: ${TABLE}.latitude
-
-  - dimension: longitude
-    type: number
-    sql: ${TABLE}.longitude
-
+  - dimension: location
+    type: location
+    sql_latitude: ${TABLE}.latitude
+    sql_longitude: ${TABLE}.longitude
+  
   - dimension: lsoa_of_accident_location
     type: string
     sql: ${TABLE}.lsoa_of_accident_location

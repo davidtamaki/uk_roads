@@ -3,26 +3,20 @@
 - include: "*.view.lookml"       # include all the views
 - include: "*.dashboard.lookml"  # include all the dashboards
 
-# - explore: accident
-# 
-# - explore: casualty
-# 
-# - explore: vehicle
 
 
-
-- explore: vehicle_map
+- explore: vehicle
   label: 'UK Accidents'
   view_label: 'Vehicles'
   joins:
-    - join: accident_map
+    - join: accident
       view_label: 'Accidents'
-      sql_on: ${accident_map.accident_index} = ${vehicle_map.accident_index}
+      sql_on: ${accident.accident_index} = ${vehicle.accident_index}
       relationship: many_to_one
-    - join: casualty_map
+    - join: casualty
       view_label: 'Casualties'
-      sql_on: ${casualty_map.accident_index} = ${accident_map.accident_index}
+      sql_on: ${casualty.accident_index} = ${accident.accident_index}
       relationship: one_to_many
 
-- explore: casualty_map
+- explore: casualty
 

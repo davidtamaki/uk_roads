@@ -1,4 +1,4 @@
-- view: casualty_map
+- view: casualty
   sql_table_name: public.casualty_map
   fields:
 
@@ -24,6 +24,12 @@
   - dimension: age_of_casualty
     type: number
     sql: ${TABLE}.age_of_casualty
+    
+  - dimension: age_casualty_tier
+    type: tier
+    style: integer
+    sql: ${age_of_casualty}
+    tiers: [0,10,20,30,40,50,60,70,80,90,100]
 
   - dimension: bus_or_coach_passenger
     type: string

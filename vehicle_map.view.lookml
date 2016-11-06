@@ -1,4 +1,4 @@
-- view: vehicle_map
+- view: vehicle
   sql_table_name: public.vehicle_map
   fields:
 
@@ -17,13 +17,20 @@
     hidden: true
     sql: ${TABLE}.accident_index || ${TABLE}.index
     
-  - dimension: age_band_of_driver
-    type: string
-    sql: ${TABLE}.age_band_of_driver
+#   - dimension: age_band_of_driver
+#     type: string
+#     sql: ${TABLE}.age_band_of_driver
 
   - dimension: age_of_driver
     type: number
     sql: ${TABLE}.age_of_driver
+    
+  - dimension: age_driver_tier
+    type: tier
+    style: integer
+    sql: ${age_of_driver}
+    tiers: [0,5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100]
+    
 
   - dimension: age_of_vehicle
     type: number
