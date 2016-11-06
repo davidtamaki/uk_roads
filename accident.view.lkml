@@ -1,16 +1,5 @@
 view: accident {
   sql_table_name: public.accident_map ;;
-  #   - dimension: accident_date
-  #     type: string
-  #     sql: ${TABLE}.accident_date
-
-  #   - dimension: day_of_week
-  #     type: string
-  #     sql: ${TABLE}.day_of_week
-
-  #   - dimension: time
-  #     type: string
-  #     sql: ${TABLE}.time
 
   dimension_group: accident {
     type: time
@@ -31,7 +20,7 @@ view: accident {
 
   dimension: pk {
     primary_key: yes
-    hidden: yes
+    label: "Primary Key"
     sql: ${TABLE}.accident_index || ${TABLE}.index ;;
   }
 
@@ -86,14 +75,23 @@ view: accident {
   }
 
   dimension: location_easting_osgr {
+    group_label: "east_north_osgr"
     type: number
     sql: ${TABLE}.location_easting_osgr ;;
   }
 
   dimension: location_northing_osgr {
+    group_label: "east_north_osgr"
     type: number
     sql: ${TABLE}.location_northing_osgr ;;
   }
+
+  dimension:  east_north {
+    group_label: "east_north_osgr"
+    type: number
+    sql: ${location_easting_osgr} ||  ${location_northing_osgr} ;;
+  }
+
 
   dimension: location {
     type: location
@@ -175,4 +173,15 @@ view: accident {
     type: count
     drill_fields: []
   }
+
+  measure:sum_of_casualties {
+    type: sum
+    sql: ${number_of_casualties} ;;
+  }
+
+  measure:sum_of_vehicles {
+    type: sum
+    sql: ${number_of_vehicles} ;;
+  }
+
 }

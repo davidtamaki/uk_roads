@@ -33,7 +33,7 @@ view: casualty {
     type: tier
     style: integer
     sql: ${age_of_casualty} ;;
-    tiers: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+    tiers: [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100]
   }
 
   dimension: bus_or_coach_passenger {
@@ -57,6 +57,7 @@ view: casualty {
   }
 
   dimension: casualty_reference {
+    hidden:  yes
     type: number
     sql: ${TABLE}.casualty_reference ;;
   }
@@ -92,12 +93,33 @@ view: casualty {
   }
 
   dimension: vehicle_reference {
+    hidden:  yes
     type: number
     sql: ${TABLE}.vehicle_reference ;;
   }
 
-  measure: count {
+  measure: total_count {
     type: count
     drill_fields: []
   }
+
+  measure: count_deaths {
+    type:  count
+    filters: {
+      field: casualty_severity
+      value: "Fatal"
+    }
+  }
+
+  measure: count_pedestrians {
+    type: count
+    filters: {
+      field: casualty_class
+      value: "Pedestrian"
+    }
+  }
+
+
+
+
 }
