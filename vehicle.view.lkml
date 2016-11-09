@@ -74,7 +74,6 @@ view: vehicle {
   }
 
   dimension: vehicle_type {
-    hidden: yes
     type: string
     sql: ${TABLE}.vehicle_type ;;
   }
@@ -152,9 +151,6 @@ view: vehicle {
     sql: ${TABLE}.was_vehicle_left_hand_drive ;;
   }
 
-
-
-
   measure: count {
     type: count
     drill_fields: []
@@ -167,4 +163,6 @@ view: vehicle {
       value: "Pedal cycle"
     }
   }
+
+
 }
