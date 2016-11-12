@@ -13,6 +13,19 @@ view: cycle_accident_cause {
     distribution_style: all
   }
 
+  filter: gender {
+    suggestions: ["Male","Female","Not known"]
+  }
+
+  dimension: dashboard_dimension {
+    label: "Accident"
+    sql:
+      CASE WHEN {% condition gender %} '' {% endcondition %} THEN ${casualty.sex_of_casualty}
+        WHEN {% condition gender %} ${vehicle.sex_of_driver} {% endcondition %} THEN ${vehicle_involved}
+      END;;
+  }
+
+
 
   dimension: accident_index {
     hidden: yes
@@ -24,6 +37,21 @@ view: cycle_accident_cause {
   dimension: list_of_vehicles_cause_cycle_accident {
     type: string
     sql: ${TABLE}.vehicles ;;
+  }
+
+  dimension: vehicle_involved {
+    type: string
+    case: {
+      when: {
+        label: "Car"
+        sql: ${list_of_vehicles_cause_cycle_accident} LIKE '%Car%' ;;
+      }
+      when: {
+        label: "Truck"
+        sql: ${list_of_vehicles_cause_cycle_accident} LIKE '%Goods%' ;;
+      }
+      else: "Other"
+    }
   }
 
   measure: count_car_involved_cycle_accident {
