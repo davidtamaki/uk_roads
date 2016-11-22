@@ -21,7 +21,7 @@ view: cycle_accident_cause {
     label: "Accident"
     sql:
       CASE WHEN {% condition gender %} '' {% endcondition %} THEN ${casualty.sex_of_casualty}
-        WHEN {% condition gender %} ${vehicle.sex_of_driver} {% endcondition %} THEN ${vehicle_involved}
+        WHEN {% condition gender %} ${casualty.sex_of_casualty} {% endcondition %} THEN ${vehicle_involved}
       END;;
   }
 
